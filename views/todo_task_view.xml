@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- List view -->
+        <record id="todo_task_tree_view" model="ir.ui.view">
+            <field name="name">todo_task_tree_view</field>
+            <field name="model">todo.task</field>
+            <field name="arch" type="xml">
+                <tree string="Todo Task">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="is_done"/>
+                    <field name="description"/>
+                    <field name="color" widget="color"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form view -->
+        <record id="todo_task_form_view" model="ir.ui.view">
+            <field name="name">todo_task_form_view</field>
+            <field name="model">todo.task</field>
+            <field name="arch" type="xml">
+                <form string="Todo Task">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="user_id"/>
+                            <field name="is_done"/>
+                            <field name="description"/>
+                            <field name="color" widget="color"/>
+                            <field name="active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="todo_task_act_window" model="ir.actions.act_window">
+            <field name="name">Todo Task</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">todo.task</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_todo_task_js" model="ir.actions.client">
+            <field name="name">Todo Task JS</field>
+            <field name="tag">todo_task_module.action_todo_task_js</field>
+        </record>
+
+        <menuitem
+            id="todo_task_module_menu_root"
+            name="Module OWL"
+            sequence="0"
+        />
+
+        <menuitem
+            id="todo_task_menu"
+            name="Todo Task"
+            action="todo_task_act_window"
+            sequence="0"
+            parent="todo_task_module_menu_root"
+        />
+        <menuitem
+            id="todo_task_js_menu"
+            name="Todo Task JS"
+            action="action_todo_task_js"
+            sequence="0"
+            parent="todo_task_module_menu_root"
+        />
+    </data>
+</odoo>
